@@ -14,6 +14,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("employees/")
@@ -128,6 +129,36 @@ public class EmployeeController {
                                                               @RequestParam Integer endAge)
     {
         return employeeRepository.getEmployeesNamesDeptsBetweenAgesNative(startAge, endAge);
+    }
+
+    @GetMapping("getTotalEmployeesNq")
+    public Integer getTotalEmps()
+    {
+        return employeeRepository.NqGetTotalEmployees();
+    }
+
+    @GetMapping("getTotalEmployeesProc")
+    public Integer getTotalEmpsProc()
+    {
+        return employeeRepository.ProcGetTotalEmployees();
+    }
+
+    @GetMapping("getAgeByEmpIdNq")
+    public Integer getAgeByEmpId(@RequestParam Integer employeeId)
+    {
+        return employeeRepository.NqGetAgeByEmpId(employeeId);
+    }
+
+    @GetMapping("getAgeByEmpIdProc")
+    public Integer getAgeByEmpIdProc(@RequestParam Integer employeeId)
+    {
+        return employeeRepository.ProcGetAgeByEmpId(employeeId);
+    }
+
+    @GetMapping("getAgeAndDeptNq")
+    public Map<String, ?> getAgeAndDeptNq(@RequestParam Integer employeeId)
+    {
+        return employeeRepository.NqGetAgeAndDept(employeeId);
     }
 
 //    to throw a proper exception for method aryument Id being greater than 0 with @Validated annotation

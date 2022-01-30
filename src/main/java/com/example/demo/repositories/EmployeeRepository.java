@@ -3,10 +3,12 @@ package com.example.demo.repositories;
 import com.example.demo.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
@@ -57,4 +59,20 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     public List<Object> getEmployeesNamesDeptsBetweenAgesNative(@Param("startAge") Integer startAge,
                                                                 @Param("endAge") Integer endAge);
 
+    @Query(value = "select get_total_employees()", nativeQuery = true)
+    public Integer NqGetTotalEmployees();
+
+    @Procedure(procedureName = "get_total_employees")
+    public Integer ProcGetTotalEmployees();
+
+    @Query(value = "select proc_single_input(?1)", nativeQuery = true)
+    public Integer NqGetAgeByEmpId(Integer empId);
+
+    @Procedure(procedureName = "proc_single_input")
+    public Integer ProcGetAgeByEmpId(Integer empId);
+
+//    @Query(value = "select proc_multi_output(?1)", nativeQuery = true)
+//    No Dialect mapping for JDBC type: 1111 - because this returns a record, we need a select * for separate cols
+    @Query(value = "select * from proc_multi_output(?1)", nativeQuery = true)
+    public Map<String, ?> NqGetAgeAndDept(Integer empId);
 }
