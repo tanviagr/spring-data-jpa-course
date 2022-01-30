@@ -78,4 +78,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Procedure(name = "emp.getNameAndDeptById") //use the alias specified on the entity for this procedure
     public Map<String, ?> ProcGetAgeAndDeptById(Integer empid);
+
+    @Query(value = "select * from get_emp_by_id_tableset(?1)", nativeQuery = true)
+    public Map<String, ?> NqGetIdNameById(Integer empId);
+
+    @Query(value = "select * from proc_multi_output_2(?1)", nativeQuery = true)
+    public Map<String, ?> NqGetNameAgeDeptById(Integer empId);
+
+    @Procedure(name = "emp.getNameAgeDeptById")
+    public Map<String, ?> ProcGetNameAgeDeptById(Integer empid); //same as the IN param in the procedure
 }
