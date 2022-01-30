@@ -75,4 +75,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 //    No Dialect mapping for JDBC type: 1111 - because this returns a record, we need a select * for separate cols
     @Query(value = "select * from proc_multi_output(?1)", nativeQuery = true)
     public Map<String, ?> NqGetAgeAndDept(Integer empId);
+
+    @Procedure(name = "emp.getNameAndDeptById") //use the alias specified on the entity for this procedure
+    public Map<String, ?> ProcGetAgeAndDeptById(Integer empid);
 }

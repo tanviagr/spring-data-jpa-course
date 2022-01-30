@@ -161,6 +161,12 @@ public class EmployeeController {
         return employeeRepository.NqGetAgeAndDept(employeeId);
     }
 
+    @GetMapping("getAgeAndDeptByIdProc")
+    public Map<String, ?> getAgeAndDeptByIdProc(@RequestParam Integer employeeId)
+    {
+        return employeeRepository.ProcGetAgeAndDeptById(employeeId);
+    }
+
 //    to throw a proper exception for method aryument Id being greater than 0 with @Validated annotation
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

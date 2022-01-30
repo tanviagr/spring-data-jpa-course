@@ -12,6 +12,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "employees")
+@NamedStoredProcedureQuery(
+        name = "emp.getNameAndDeptById", //alias which we will refer to in @Procedure annotation in the repo
+        procedureName = "proc_multi_output",
+        parameters = {
+        @StoredProcedureParameter(name = "empid", type = Integer.class, mode = ParameterMode.IN),
+        @StoredProcedureParameter(name = "empage", type = Integer.class, mode = ParameterMode.OUT),
+        @StoredProcedureParameter(name = "empdept", type = String.class, mode = ParameterMode.OUT)
+})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
