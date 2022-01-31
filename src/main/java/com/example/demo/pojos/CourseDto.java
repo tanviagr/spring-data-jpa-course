@@ -6,30 +6,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 public class CourseDto {
-    private String courseName;
-    private Integer credits;
+    private String courseNameDto;
+    private Integer creditsDto;
 
-    public CourseDto(String courseName, Integer credits) {
-        this.courseName = courseName;
-        this.credits = credits;
+    public CourseDto(String courseNameDto, Integer creditsDto) {
+        this.courseNameDto = courseNameDto;
+        this.creditsDto = creditsDto;
     }
 
     public CourseDto() {
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getCourseNameDto() {
+        return courseNameDto;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseNameDto(String courseNameDto) {
+        this.courseNameDto = courseNameDto;
     }
 
-    public Integer getCredits() {
-        return credits;
+    public Integer getCreditsDto() {
+        return creditsDto;
     }
 
-    public void setCredits(Integer credits) {
-        this.credits = credits;
+    public void setCreditsDto(Integer creditsDto) {
+        this.creditsDto = creditsDto;
     }
 }
